@@ -2,7 +2,7 @@ name: Publish website
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch: # 允许手动触发工作流
 permissions:
   contents: write
@@ -37,9 +37,9 @@ jobs:
 
       - name: cd pdf.js
         run: cd pdf.js
-             ls
 
-      - name: 删除web/app.js中的
+      - name: web/app.js
+        working-directory: pdf.js
         run: sed -z 's/if (fileOrigin !== viewerOrigin) {\n *throw new Error("file origin does not match viewer.s");\n *}//g' web/app.js
 
       - name: Install dependencies
