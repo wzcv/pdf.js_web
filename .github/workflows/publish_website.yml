@@ -37,12 +37,12 @@ jobs:
 
       - name: Change web/app.js
         working-directory: pdf.js
-        run: |
+        run: sed -i -z 's/if (fileOrigin !== viewerOrigin) {\n *throw new Error("file origin does not match viewer.s");\n *}//g' web/app.js
+          
           # git config --global user.name "GitHub Actions"
           # git config --global user.email "actions@github.com"
           # git am app.patch
-          sed -i -z 's/if (fileOrigin !== viewerOrigin) {\n *throw new Error("file origin does not match viewer.s");\n *}//g' web/app.js
-
+      
       - name: Install dependencies
         working-directory: pdf.js
         run: npm ci
