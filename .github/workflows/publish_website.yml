@@ -31,11 +31,14 @@ jobs:
         run: git clone https://github.com/mozilla/pdf.js.git
 
       - name: Copy static to pdf.js
-        run: cp -r static pdf.js/
+        run: |
+          cp -r static pdf.js/
+          cp -r app.patch pdf.js/
 
       - name: Change web/app.js
         working-directory: pdf.js
-        run: sed -z 's/if (fileOrigin !== viewerOrigin) {\n *throw new Error("file origin does not match viewer.s");\n *}//g' web/app.js
+        run: git am app.patch
+        #sed -z 's/if (fileOrigin !== viewerOrigin) {\n *throw new Error("file origin does not match viewer.s");\n *}//g' web/app.js
 
       - name: Install dependencies
         working-directory: pdf.js
