@@ -119,7 +119,7 @@ jobs:
           # git add website
           # git add -f website/build/* 
           git commit -m "Add website directory with build files" || echo "No changes to commit"
-          git push -u origin website || echo "Push failed"
+          git push -u origin website --force|| echo "Push failed"
 
         env:
           GIT_PUSH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
