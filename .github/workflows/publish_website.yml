@@ -3,10 +3,10 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # 允许手动触发工作流
+  workflow_dispatch: 
 permissions:
   contents: write
-  pages: write  # 增加权限以推送到GitHub Pages
+  pages: write  
 
 jobs:
   build-and-deploy:
@@ -33,7 +33,7 @@ jobs:
       - name: Copy static to pdf.js
         run: cp -r static pdf.js/
 
-      - name: change web/app.js
+      - name: Change web/app.js
         working-directory: pdf.js
         run: sed -z 's/if (fileOrigin !== viewerOrigin) {\n *throw new Error("file origin does not match viewer.s");\n *}//g' web/app.js
 
