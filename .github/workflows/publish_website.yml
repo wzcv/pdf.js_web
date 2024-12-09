@@ -37,6 +37,7 @@ jobs:
 
       - name: cd pdf.js
         run: cd pdf.js
+             ls
 
       - name: 删除web/app.js中的
         run: sed -z 's/if (fileOrigin !== viewerOrigin) {\n *throw new Error("file origin does not match viewer.s");\n *}//g' web/app.js
