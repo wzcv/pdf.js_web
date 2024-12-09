@@ -111,8 +111,8 @@ jobs:
           git commit -m "Add website directory with build files" || echo "No changes to commit"
           git push || echo "Push failed"
 
-        # env:
-        #   GIT_PUSH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        env:
+          GIT_PUSH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
