@@ -1,5 +1,7 @@
 name: Publish website
 on:
+  schedule:
+    - cron: "0 0 1,11,21 * *"
   push:
     branches:
       - main
