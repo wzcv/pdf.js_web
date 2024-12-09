@@ -74,7 +74,9 @@ jobs:
 
       - name: Copy build files to website directory
         working-directory: pdf.js
-        run: cp -r build/gh-pages/* website/
+        run:  |
+           mkdir website
+           cp -r build/gh-pages/* website/
         
       # - name: Rename and Replace Extension
       #   run: |
