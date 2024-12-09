@@ -27,28 +27,26 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-
-      
       - name: Clone the repository
         run: git clone https://github.com/mozilla/pdf.js.git
 
       - name: Copy static to pdf.js
         run: cp -r static pdf.js/
 
-      - name: cd pdf.js
-        run: cd pdf.js
-
-      - name: web/app.js
+      - name: change web/app.js
         working-directory: pdf.js
         run: sed -z 's/if (fileOrigin !== viewerOrigin) {\n *throw new Error("file origin does not match viewer.s");\n *}//g' web/app.js
 
       - name: Install dependencies
+        working-directory: pdf.js
         run: npm ci
         
       - name: Build the website
+        working-directory: pdf.js
         run: npx gulp web
 
       - name: Archive the website
+        working-directory: pdf.js
         shell: sh
         run: |
           chmod -c -R +rX "$INPUT_PATH" | while read line; do
@@ -75,6 +73,7 @@ jobs:
           if-no-files-found: error
 
       - name: Copy build files to website directory
+        working-directory: pdf.js
         run: cp -r build/gh-pages/* website/
         
       # - name: Rename and Replace Extension
@@ -101,6 +100,7 @@ jobs:
       #     fi
         
       - name: Add, commit, and push to current branch
+        working-directory: pdf.js
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
