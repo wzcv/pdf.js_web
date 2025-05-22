@@ -39,11 +39,10 @@ jobs:
 
       - name: Change web/app.js
         working-directory: pdf.js
-        run: git am app.patch
-          
-          # git config --global user.name "GitHub Actions"
-          # git config --global user.email "actions@github.com"
-          # git am app.patch
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git am app.patch
       
       - name: Install dependencies
         working-directory: pdf.js
