@@ -43,7 +43,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           ls
-          git am app.patch
+          git apply app.patch
       
       - name: Install dependencies
         working-directory: pdf.js
